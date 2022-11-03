@@ -23,7 +23,7 @@ export default function RotasTab(){
            headerShown: false,
            headerTitle: "Impusiiic",
            headerStyle:{
-            backgroundColor: "#1C1C1C",
+            backgroundColor: "rgb(20,20,20)",
            },
            headerTintColor: "#938",
          
@@ -58,16 +58,6 @@ export default function RotasTab(){
             }}
             />
             
-             
-            <RotasDashBoard.Screen name="ModalPost" component={ModalPost} 
-             options={{
-                tabBarLabel:  '',
-                tabBarActiveTintColor: 'black',
-                tabBarIcon: ({color}) => (
-                    <ModalPost />
-                ),
-            }}
-            />
 
             <RotasDashBoard.Screen name="Biblioteca" component={Biblioteca} 
             options={{

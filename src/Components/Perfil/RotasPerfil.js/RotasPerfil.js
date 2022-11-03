@@ -11,18 +11,17 @@ export default function PerfilTabs() {
     return (
       <Tab.Navigator screenOptions={{
           tabBarStyle: {
-              backgroundColor:'#363636',
+            backgroundColor:'rgb(20,20,20)',
             borderColor : 'transparent' ,
+            height: 40,
           },
           tabBarActiveTintColor : '#FFFFFF' ,
           
           tabBarLabelStyle: {
-              fontSize: 15,
+              fontSize: 14,
           },
           tabBarIndicatorStyle: {
-            backgroundColor: '#fff',
-            marginHorizontal: '15%',
-            width: 1,
+            backgroundColor: '#F5F5F5',
           },
 
       }}>

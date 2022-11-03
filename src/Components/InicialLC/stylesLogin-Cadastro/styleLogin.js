@@ -10,9 +10,11 @@ export const StyleLogin = StyleSheet.create({
     },
     container:{
     alignItems: 'center',
-    padding: 10,
-    height: 280,
-    width: 270,
+    padding: 12,
+    border: 'solid',
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: '#936',
     },
     textLogin:{
         margin: 10,

@@ -7,7 +7,7 @@ import { StyleLogin } from '../stylesLogin-Cadastro/styleLogin';
 
 
 
-export default function({navigation}){
+export default function Login ({navigation}){
     const [email, setEmail] = useState('');
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
@@ -30,7 +30,22 @@ export default function({navigation}){
         let ress = await reqs.json();
         if(ress == false){
             Alert.alert("E-mail ou senha invalidos")
-        }else{
+        }
+        if(email === '', password === ''){
+            Alert.alert("Todos os campos devem ser preenchidos")
+        }
+        if(email === ''){
+            Alert.alert("O preecha o campo do email")
+        }
+        if(password === ''){
+            Alert.alert("O preecha o campo da senha")
+        }
+        else{
+            
+            let userData = await AsyncStorage.setItem('userData', JSON.stringify(ress))
+            let resData = await AsyncStorage.getItem('userData');
+            console.log(JSON.parse(resData))
+
             navigation.reset({
                 index: 1,
                 routes: [
@@ -38,7 +53,6 @@ export default function({navigation}){
                 ],
             })
         }
-        
         
     }; 
 

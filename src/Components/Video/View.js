@@ -30,6 +30,8 @@ export default function Watch({route, navigation}){
           .catch((error) => console.error(error));
     }, []);
 
+
+
     return(
         <View style={Style.Body}>
             <StatusBar 

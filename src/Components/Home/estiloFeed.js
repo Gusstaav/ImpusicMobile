@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export const estiloFeed = StyleSheet.create({
     Geral: {
         flex: 1,
-        backgroundColor: '#212121',
+        backgroundColor: 'rgb(20,20,20)' ,
     },
     Container: {
         alignItems: 'center',
