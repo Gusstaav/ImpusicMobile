@@ -12,7 +12,7 @@ export default function Feed ({route, navigation}){
         SE TIVER RODANDO NO PRÓPRIO PC: 10.0.2.2
         SE TIVER RODANDO NO EXPO GO: 192.168.1.14 (ipv4 do seu computador)
     */
-   const ipBd = '192.168.0.17';
+   const ipBd = '172.16.4.7';
 
     useEffect(() => {
         fetch('http://'+ipBd+'/rnmysql/videos.php')
@@ -33,7 +33,7 @@ export default function Feed ({route, navigation}){
                 }}>
                     <View style={estiloFeed.Container}>
                         <Image style={estiloFeed.thumbnailVideo}
-                            source={{uri: "http://"+ipBd+"/rnmysql/thumbnail/"+video.thumbnail+".jpg"}}
+                            source={{uri: "http://"+ipBd+"/rnmysql/thumbnail/"+video.thumbnail+".png"}}
                         />
                         <View style={estiloFeed.descricaoVideo}>
                             <Image style={estiloFeed.fotoCanalVideo}

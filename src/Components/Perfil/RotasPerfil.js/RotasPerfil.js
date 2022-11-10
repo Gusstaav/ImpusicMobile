@@ -26,7 +26,6 @@ export default function PerfilTabs() {
 
       }}>
         <Tab.Screen name="SeusVideos" component={SeusVideos} />
-        <Tab.Screen name="Curtidos" component={Curtidos} />
       </Tab.Navigator>
     );
   }

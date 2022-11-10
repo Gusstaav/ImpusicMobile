@@ -30,8 +30,7 @@ export default function Routes(){
                 backgroundColor : '#212121',
                 height: 70,
             },
-        }}
-        >
+        }}>
             <Stack.Screen name="Login" component={Login}
                 options={
                     {
@@ -41,6 +40,8 @@ export default function Routes(){
             />
             <Stack.Screen name="Cadastro" component={Cadastro}
                 options={{
+                    
+                    
                     headerStyle: {
                         backgroundColor: '#D3D3D3'
                     }

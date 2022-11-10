@@ -10,7 +10,7 @@ export const estiloPerfil = StyleSheet.create({
     fotoPerfil: {
         marginTop: 12,
         height: '25%',
-        width: '18%',
+        width: '23%',
         borderRadius: 60,
     },
     textoPerfil: {

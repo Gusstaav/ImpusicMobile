@@ -6,6 +6,7 @@ export const estiloVideo = StyleSheet.create({
         backgroundColor: '#212121',
     },
     container: {
+        width: '100%',
         flexDirection: 'row',
         margin: 5,
         border: 'solid',
@@ -21,7 +22,7 @@ export const estiloVideo = StyleSheet.create({
         height: 150,
     },
     textoVideo: {
-        padding:  10,
+        padding:  5,
         fontSize: 15,
         color: '#fff',
     },

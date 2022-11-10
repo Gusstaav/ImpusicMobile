@@ -16,7 +16,7 @@ export default function Login ({navigation}){
 
     //Fazer Login
     async function doLogin(){
-        let reqs = await fetch('http://192.168.0.17/rnmysql/verify-login.php?email='+email+'&password='+password, {
+        let reqs = await fetch('http://172.16.4.7/rnmysql/verify-login.php?email='+email+'&password='+password, {
             method: 'POST',
             headers:{
                 'Accep':'application/json',
@@ -34,6 +34,7 @@ export default function Login ({navigation}){
         if(email === '', password === ''){
             Alert.alert("Todos os campos devem ser preenchidos")
         }
+        
         else{
             navigation.navigate('Impusic', {
                 user: ress.user,

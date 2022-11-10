@@ -17,11 +17,11 @@ import Login from "../Components/InicialLC/Login/Login";
 const RotasDashBoard = createBottomTabNavigator();
 
 export default function RotasTab({route, navigation}){
-    const userr = route.params.user;
-    
+    const { user } = route.params;
+   
     return(
-        <RotasDashBoard.Navigator
-        initialRouteParams={ userr }
+        <RotasDashBoard.Navigator 
+       
         initialRouteName="Feed"
          screenOptions={{
            headerShown: false,
@@ -71,15 +71,16 @@ export default function RotasTab({route, navigation}){
                 )
             }}
             />
-            
-            <RotasDashBoard.Screen name="Perfil" component={Perfil}  options={{
+       
+            <RotasDashBoard.Screen name="Perfil" component={Perfil} initialParams={{user}} options={{
                 headerShown: false,
-                 tabBarLabel:  '',
+                tabBarLabel:  '', 
                 tabBarIcon: ({color}) => (
                     <EvilIcons name="user" size={35} color={color} />
-                )
-            }}
-            />
+                    )
+                }}
+                
+                />
 
         </RotasDashBoard.Navigator>
     );
