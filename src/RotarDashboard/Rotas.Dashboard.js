@@ -16,9 +16,13 @@ import Login from "../Components/InicialLC/Login/Login";
 
 const RotasDashBoard = createBottomTabNavigator();
 
-export default function RotasTab(){
+export default function RotasTab({route, navigation}){
+    const userr = route.params.user;
+    
     return(
-        <RotasDashBoard.Navigator initialRouteName="Feed"
+        <RotasDashBoard.Navigator
+        initialRouteParams={ userr }
+        initialRouteName="Feed"
          screenOptions={{
            headerShown: false,
            headerTitle: "Impusiiic",

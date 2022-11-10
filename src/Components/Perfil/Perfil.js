@@ -8,13 +8,15 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import PerfilTabs from "./RotasPerfil.js/RotasPerfil";
 
-export default function Perfil(){
-    const [user, setUser] = useState("");
+export default function Perfil({route, navigation}){
+   
+    
+
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     const [idUser, setIdUser] = useState('');
     
-    
+    console.log(route.params)
 
 
     /*
@@ -23,7 +25,7 @@ export default function Perfil(){
     */
    const ipBd = '192.168.0.17';
    
-   useEffect(() => {
+   /*useEffect(() => {
        async function getUser(){
            const response = await AsyncStorage.getItem('userData');
            const json = JSON.parse(response);
@@ -31,44 +33,39 @@ export default function Perfil(){
        }
        getUser();
    },[])
-
-   console.log(user)
+*/
+   
    
    useEffect(() => {
-       fetch('http://'+ipBd+'/rnmysql/get-channel-by-user.php?channelUser='+user.user)
+       fetch('http://'+ipBd+'/rnmysql/get-channel-by-user.php?channelUser=gustavo')
        .then(response => response.json())
-       .then((json) => setData(json))
+       .then((json) => setData(json.find(obj => {
+        return obj.user === 'gustavo';
+      })))
        .catch((error) => console.error(error))
        .finally(() => setLoading(false));
        
     }, []);
     
-
-   
-
+ 
     return(
         <>
        
-        
-        
-           
-        
         <View style={estiloPerfil.container}  >
             <Image style={estiloPerfil.fotoBanner} 
             source={{uri: "http://"+ipBd+"/rnmysql/banner/1.png"}}
             />
 
             <Image style={estiloPerfil.fotoPerfil}
-            source={{uri: "http://"+ipBd+"/rnmysql/icons/profile/"+user.id+".jpg"}}
+            source={{uri: "http://"+ipBd+"/rnmysql/icons/profile/"+data.id+".jpg"}}
             />
-                <Text style={estiloPerfil.textoPerfil}> {user.name} </Text>
-                <Text style={estiloPerfil.textoDescription}> {user.description} </Text>
-                <Text style={estiloPerfil.textoDescription}> <Feather name="instagram" size={13} />  {user.instagram}  </Text>
-                <Text style={estiloPerfil.textoDescription}> <Feather name="facebook" size={13} /> {user.facebook}  </Text>
+                <Text style={estiloPerfil.textoPerfil}> {data.name} </Text>
+                <Text style={estiloPerfil.textoDescription}> {data.description} </Text>
+                <Text style={estiloPerfil.textoDescription}> <Feather name="instagram" size={13} />  {data.instagram}  </Text>
+                <Text style={estiloPerfil.textoDescription}> <Feather name="facebook" size={13} /> {data.facebook}  </Text>
 
         </View>
-           
-            
+                
         
         <PerfilTabs />
        

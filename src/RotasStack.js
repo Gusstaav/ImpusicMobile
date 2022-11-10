@@ -19,7 +19,7 @@ export default function Routes(){
     return(
         <Stack.Navigator 
          screenOptions={{
-            headerShown: true,
+            headerShown: false,
             headerTitle : "Impusic",
 
             headerTitleAlign : 'left',
@@ -30,7 +30,8 @@ export default function Routes(){
                 backgroundColor : '#212121',
                 height: 70,
             },
-        }}>
+        }}
+        >
             <Stack.Screen name="Login" component={Login}
                 options={
                     {
@@ -48,7 +49,7 @@ export default function Routes(){
 
                 <Stack.Screen name="Impusic" component={RotasTab}
                     options={{
-                        headerShown: true,
+                        headerShown: false,
                     }}
                 />
 

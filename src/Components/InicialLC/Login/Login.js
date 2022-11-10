@@ -34,24 +34,10 @@ export default function Login ({navigation}){
         if(email === '', password === ''){
             Alert.alert("Todos os campos devem ser preenchidos")
         }
-        if(email === ''){
-            Alert.alert("O preecha o campo do email")
-        }
-        if(password === ''){
-            Alert.alert("O preecha o campo da senha")
-        }
         else{
-            
-            let userData = await AsyncStorage.setItem('userData', JSON.stringify(ress))
-            let resData = await AsyncStorage.getItem('userData');
-            console.log(JSON.parse(resData))
-
-            navigation.reset({
-                index: 1,
-                routes: [
-                { name: 'Impusic' },
-                ],
-            })
+            navigation.navigate('Impusic', {
+                user: ress.user,
+            });
         }
         
     }; 
