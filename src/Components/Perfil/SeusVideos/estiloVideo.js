@@ -3,28 +3,50 @@ import { StyleSheet } from "react-native";
 
 export const estiloVideo = StyleSheet.create({
     geral: {
-        backgroundColor: '#212121',
+        flex: 1,
+        backgroundColor: 'rgb(14,14,14)' ,
     },
-    container: {
-        width: '100%',
-        flexDirection: 'row',
-        margin: 5,
-        border: 'solid',
-        borderTopColor: '#fff',
-        borderBottomColor: '#fff',
-        borderLeftColor: 'transparent',
-        borderRightColor: 'transparent',
-        borderWidth: 1,
-    },
-    video: {
+    Container: {
+        alignItems: 'center',
         
-        width: '50%', 
-        height: 150,
     },
-    textoVideo: {
-        padding:  5,
-        fontSize: 15,
+    thumbnailVideo: {
+        height: 200,
+        width: '100%',
+        
+    },
+    tituloVideo:{
+        fontSize: 16,
         color: '#fff',
+        width: '100%',
+        
+    },
+    canalVideo:{
+        fontSize: 12,
+        color: '#fff',
+        width: '100%',
+        marginBottom: 20,
+    },
+    fotoCanalVideo:{
+        borderRadius: 100,
+        width: 35,
+        height: 35,
+    },
+    header:{
+        flex: 1,
+        marginLeft: '5%',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        width: '100%',
+        paddingLeft: '5%',
+        paddingRight: '5%',
+        paddingTop: 6
+    },
+    headerTextosVideo:{
+        width: '100%',
+        paddingLeft: 6,
+        paddingRight: 6,
+        backgroundColor: 'rgb(15,15,15)'
     },
 
 })

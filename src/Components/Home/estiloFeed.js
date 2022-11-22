@@ -46,5 +46,28 @@ export const estiloFeed = StyleSheet.create({
         width: '100%',
         paddingLeft: 6,
         paddingRight: 6
+    },
+    Header:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: 20,
+        height: 55,
+        padding: 5,
+    },
+    botaoPerfil:{
+        height: '80%',
+        width: '10%',
+        marginRight: 5,
+    },
+    textHeader:{
+        color: "#939",
+        fontSize: 15,
+        padding: 5,
+    },
+    imageUser:{
+        height: '100%',
+        width: '100%',
+        borderRadius: 50,
     }
 })

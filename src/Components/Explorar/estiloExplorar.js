@@ -1,13 +1,11 @@
-import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export const estiloExplorar = StyleSheet.create({
     Geral: {
         flex: 1,
-        backgroundColor: '#212121',
+        backgroundColor: 'rgb(20,20,20)' ,
     },
     Container: {
-        flex: 1,
         alignItems: 'center',
         
     },
@@ -24,19 +22,20 @@ export const estiloExplorar = StyleSheet.create({
         
     },
     canalVideo:{
-        fontSize: 14,
+        fontSize: 12,
         color: '#fff',
         width: '100%',
-        marginBottom: 15,
+        marginBottom: 20,
     },
     fotoCanalVideo:{
         borderRadius: 100,
-        width: 40,
-        height: 40,
+        width: 35,
+        height: 35,
     },
     descricaoVideo:{
         flex: 1,
-        alignItems: 'center',
+        marginLeft: '5%',
+        justifyContent: 'center',
         flexDirection: 'row',
         width: '100%',
         paddingLeft: '5%',
@@ -47,5 +46,28 @@ export const estiloExplorar = StyleSheet.create({
         width: '100%',
         paddingLeft: 6,
         paddingRight: 6
+    },
+    Header:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: 20,
+        height: 55,
+        padding: 5,
+    },
+    botaoPerfil:{
+        height: '80%',
+        width: '10%',
+        marginRight: 5,
+    },
+    textHeader:{
+        color: "#939",
+        fontSize: 15,
+        padding: 5,
+    },
+    imageUser:{
+        height: '100%',
+        width: '100%',
+        borderRadius: 50,
     }
 })

@@ -50,7 +50,7 @@ export const Style = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
     },
-    User:{
+    fotoUser:{
         marginLeft: 5,
        width: 30,
        height: 30, 

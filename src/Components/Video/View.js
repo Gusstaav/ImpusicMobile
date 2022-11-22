@@ -8,21 +8,24 @@ import { setStatusBarHidden } from 'expo-status-bar';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import { StatusBar } from 'expo-status-bar';
 import Comentarios from "./Comentarios/Comentarios";
+import { ipBd } from "../../../controllerIP";
 
 
 
 export default function Watch({route, navigation}){
     const { videoId } = route.params;
+    const {channelUser} = route.params;
     const [data, setData] = useState([]);
     const [inFullscreen, setInFullsreen] = useState(false);
     const refVideo = useRef(null);
     const [status, setStatus] = React.useState({});
 
+
     /*
         SE TIVER RODANDO NO PRÓPRIO PC: 10.0.2.2
         SE TIVER RODANDO NO EXPO GO: 192.168.1.14 (ipv4 do seu computador)
     */
-    const ipBd = '192.168.0.17';
+    
     useEffect(() => {
         fetch('http://'+ipBd+'/rnmysql/search-video.php?videoId='+videoId)
           .then((response) => response.json())
@@ -97,10 +100,13 @@ export default function Watch({route, navigation}){
                             <Text style={Style.Views}> 10000 <AntDesign name="eyeo" size={8} color="#A9A9A9" /></Text>
                         
                         </View>
-                        <View style={Style.Container}>
-                            <Image source={{uri: "http://"+ipBd+"/rnmysql/icons/profile/"+data.channelId+".jpg"}} style={Style.User}/>
+                        <TouchableOpacity onPress={() => navigation.navigate('Channel', {
+                            channelUser: channelUser,
+                            videoId: videoId
+                        }) } style={Style.Container}>
+                            <Image source={{uri: "http://"+ipBd+"/rnmysql/icons/profile/"+data.channelId+".jpg"}} style={Style.fotoUser}/>
                             <Text style={Style.NameUser}>{ data.channel }</Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                     <Comentarios />
                 </>

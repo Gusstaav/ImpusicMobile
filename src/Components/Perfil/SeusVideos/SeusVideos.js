@@ -1,45 +1,58 @@
-import React from "react";
-import { Text, ScrollView, Image, View } from "react-native";
-import video from '../../../assets/images.jpg';
+import React, {useState, useEffect} from "react";
+import { Text, ScrollView, Image, View, TouchableOpacity, FlatList } from "react-native";
 import { estiloVideo } from "./estiloVideo";
 
-export default function SeusVideos (){
+import { ipBd } from "../../../../controllerIP";
+
+export default function SeusVideos ({route, navigation}){
+    const {user} = route.params;
+    const [data, setData] = useState([]);
+    const [Loading, setLoading] = useState(true);
+  
+
+   useEffect(() => {
+       fetch('http://'+ipBd+'/rnmysql/get-videos-by-user.php?channelUser='+user)
+       .then(response => response.json())
+       .then((json) => setData(json))
+       .catch((error) => console.error(error))
+       .finally(() => setLoading(false));
+       
+    }, []);
+     
+
     return(
-        <ScrollView style={estiloVideo.geral} >
-            <View style={estiloVideo.container}>
-                
-                <Image source={video} style={estiloVideo.video} />
-                <Text style={estiloVideo.textoVideo}>Video sem titulo nao sei o que aconteceu</Text>
-            </View>
-            
-            <View style={estiloVideo.container}>
-                
-                <Image source={video} style={estiloVideo.video} />
-                <Text style={estiloVideo.textoVideo}>Video sem titulo nao sei o que aconteceu</Text>
-            </View>
-            <View style={estiloVideo.container}>
-                
-                <Image source={video} style={estiloVideo.video} />
-                <Text style={estiloVideo.textoVideo}>Video sem titulo nao sei o que aconteceu</Text>
-            </View>
-
-            <View style={estiloVideo.container}>
-                
-                <Image source={video} style={estiloVideo.video} />
-                <Text style={estiloVideo.textoVideo}>Video sem titulo nao sei o que aconteceu</Text>
-            </View>
-
-            <View style={estiloVideo.container}>
-                
-                <Image source={video} style={estiloVideo.video} />
-                <Text style={estiloVideo.textoVideo}>Video sem titulo nao sei o que aconteceu</Text>
-            </View>
-
-            <View style={estiloVideo.container}>
-                
-                <Image source={video} style={estiloVideo.video} />
-                <Text style={estiloVideo.textoVideo}>Video sem titulo nao sei o que aconteceu</Text>
-            </View>
-        </ScrollView>
+       
+       <FlatList 
+        style={estiloVideo.geral}
+        data={data}
+        keyExtractor={(element) => element.id}
+        renderItem={ ({item}) => (
+                <TouchableOpacity onPress={() => { 
+                    navigation.navigate('Watch', {
+                        videoId: item.id,
+                        channelUser: item.channelUser
+                    });
+                    }}>
+                        <View style={estiloVideo.Container}>
+                            <Image style={estiloVideo.thumbnailVideo}
+                                source={{uri: "http://"+ipBd+"/rnmysql/thumbnail/"+item.thumbnail+".jpg"}}
+                            />
+                                <View style={estiloVideo.header}>
+                                    <Image style={estiloVideo.fotoCanalVideo}
+                                        source={{uri: "http://"+ipBd+"/rnmysql/icons/profile/"+item.channelId+".jpg"}}
+                                    />
+                                    <View style={estiloVideo.headerTextosVideo}>
+                                        <Text style={estiloVideo.tituloVideo}>{ item.title }</Text>
+                                        <Text style={estiloVideo.canalVideo}>{ item.channel }</Text>
+                                    </View>
+                                </View>
+                        </View>
+                    </TouchableOpacity>
+        )
+        }
+    
+        />
+  
+           
     );
 }

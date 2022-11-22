@@ -5,17 +5,16 @@ import RotasTab from "./RotarDashboard/Rotas.Dashboard";
 
 import Feed from "./Components/Home/Home";
 import Explorar from './Components/Explorar/Explorar';
-import Biblioteca from './Components/Biblioteca/Biblioteca';
-import Postar from './Components/Postar/Postar';
 import Perfil from './Components/Perfil/Perfil';
-import Historico from './Components/Biblioteca/Historico/Historico';
 import Login from "./Components/InicialLC/Login/Login";
 import Cadastro from "./Components/InicialLC/Cadastro/Cadastro";
 import Watch from "./Components/Video/View";
+import Channel from "./Components/channelUser/channel";
 
 const Stack = createStackNavigator();
 
 export default function Routes(){
+    
     return(
         <Stack.Navigator 
          screenOptions={{
@@ -30,7 +29,9 @@ export default function Routes(){
                 backgroundColor : '#212121',
                 height: 70,
             },
-        }}>
+        }}
+        >
+
             <Stack.Screen name="Login" component={Login}
                 options={
                     {
@@ -40,8 +41,6 @@ export default function Routes(){
             />
             <Stack.Screen name="Cadastro" component={Cadastro}
                 options={{
-                    
-                    
                     headerStyle: {
                         backgroundColor: '#D3D3D3'
                     }
@@ -55,9 +54,8 @@ export default function Routes(){
                 />
 
             <Stack.Screen name="Feed" component={Feed} />
+
             <Stack.Screen name="Explorar" component={Explorar} />
-            <Stack.Screen name="Biblioteca" component={Biblioteca} />
-            <Stack.Screen name="Postar" component={Postar} />
 
             <Stack.Screen name="Perfil" component={Perfil} 
                 options={{
@@ -65,8 +63,14 @@ export default function Routes(){
                     
                 }}
             />   
-
-            <Stack.Screen name="Historico" component={Historico} />
+            <Stack.Screen name="Channel" component={Channel}
+                    options={
+                        {
+                            headerShown: false,
+                        }
+                    }
+                />    
+        
             <Stack.Screen name="Watch" component={Watch} 
                 options={{
                     headerShown: false

@@ -1,27 +1,26 @@
-import React from "react";
-import { StyleSheet } from "react-native";
+import React, {useState} from "react";
+import { StyleSheet, Image, View, Text } from "react-native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {Entypo, Feather, EvilIcons, AntDesign, MaterialIcons, Ionicons} from '@expo/vector-icons';
+import {EvilIcons, Ionicons} from '@expo/vector-icons';
 
 import Feed from '../Components/Home/Home';
 import Explorar from '../Components/Explorar/Explorar';
-import Postar from '../Components/Postar/Postar';
-import Biblioteca from '../Components/Biblioteca/Biblioteca';
 import Perfil from '../Components/Perfil/Perfil';
-import ModalPost from "../Components/ModalPost/modal";
-import Login from "../Components/InicialLC/Login/Login";
+
+import { ipBd } from "../../controllerIP";
 
 
 
 const RotasDashBoard = createBottomTabNavigator();
 
 export default function RotasTab({route, navigation}){
-    const { user } = route.params;
-   
+    const {user} = route.params;
+    const {idUser} = route.params;
+    const [isLoading, setLoading] = useState(true);    
+    
     return(
-        <RotasDashBoard.Navigator 
-       
+        <RotasDashBoard.Navigator
         initialRouteName="Feed"
          screenOptions={{
            headerShown: false,
@@ -44,7 +43,7 @@ export default function RotasTab({route, navigation}){
             tabBarInactiveTintColor: '#878787',
         }}>
             
-            <RotasDashBoard.Screen name="Feed" component={Feed} 
+            <RotasDashBoard.Screen name="Feed" initialParams={{idUser, user}} component={Feed} 
             options={{
                 tabBarLabel:  '',
                 tabBarIcon: ({color}) => (
@@ -53,7 +52,18 @@ export default function RotasTab({route, navigation}){
             }}
             />
 
-            <RotasDashBoard.Screen name="Explorar" component={Explorar} 
+            <RotasDashBoard.Screen name="Perfil" component={Perfil} initialParams={{user}} options={{
+                headerShown: false,
+                tabBarLabel:  '',
+                tabBarIcon: ({color}) => (
+                    <>
+                        <EvilIcons name="user" size={40} color={color} />
+                    </>
+                )
+            }}
+            />
+
+            <RotasDashBoard.Screen name="Explorar" initialParams={{idUser, user}} component={Explorar} 
             options={{
                 tabBarLabel: '',
                 tabBarIcon: ({color}) => (
@@ -61,26 +71,6 @@ export default function RotasTab({route, navigation}){
                 )
             }}
             />
-            
-
-            <RotasDashBoard.Screen name="Biblioteca" component={Biblioteca} 
-            options={{
-                tabBarLabel: '',
-                tabBarIcon: ({color}) => (
-                    <Ionicons name="book-outline" size={25} color={color} />
-                )
-            }}
-            />
-       
-            <RotasDashBoard.Screen name="Perfil" component={Perfil} initialParams={{user}} options={{
-                headerShown: false,
-                tabBarLabel:  '', 
-                tabBarIcon: ({color}) => (
-                    <EvilIcons name="user" size={35} color={color} />
-                    )
-                }}
-                
-                />
 
         </RotasDashBoard.Navigator>
     );
@@ -91,11 +81,9 @@ export default function RotasTab({route, navigation}){
 const styles = StyleSheet.create({
     icon:   {
         padding: 10,
-        height: 50,
-        width: 50,
-        marginBottom: 15,
+        height: 37,
+        width: 37,
         borderRadius: 70,
-        color: '#939',
         backgroundColor: '#FFFAFA',
     },
 })

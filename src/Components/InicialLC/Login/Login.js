@@ -2,6 +2,8 @@ import React from 'react';
 import {TextInput, TouchableOpacity, Text, View, Alert} from 'react-native';
 import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ipBd } from '../../../../controllerIP';
+
 
 import { StyleLogin } from '../stylesLogin-Cadastro/styleLogin';
 
@@ -16,7 +18,7 @@ export default function Login ({navigation}){
 
     //Fazer Login
     async function doLogin(){
-        let reqs = await fetch('http://172.16.4.7/rnmysql/verify-login.php?email='+email+'&password='+password, {
+        let reqs = await fetch('http://'+ipBd+'/rnmysql/verify-login.php?email='+email+'&password='+password, {
             method: 'POST',
             headers:{
                 'Accep':'application/json',
@@ -34,10 +36,10 @@ export default function Login ({navigation}){
         if(email === '', password === ''){
             Alert.alert("Todos os campos devem ser preenchidos")
         }
-        
         else{
             navigation.navigate('Impusic', {
                 user: ress.user,
+                idUser: ress.id,
             });
         }
         

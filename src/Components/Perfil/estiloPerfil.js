@@ -4,14 +4,22 @@ export const estiloPerfil = StyleSheet.create({
     container:{
         height: '50%',
         alignItems: 'center',
-        backgroundColor: 'rgb(20,20,20)',
+        alignContent: 'center',
+        backgroundColor: 'rgb(14,14,14)',
     },
-    
+    containerDados:{
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    dados:{
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start'
+    },
     fotoPerfil: {
         marginTop: 12,
-        height: '25%',
-        width: '23%',
-        borderRadius: 60,
+        height: '20%',
+        width: '17%',
+        borderRadius: 100,
     },
     textoPerfil: {
         padding: 2,
