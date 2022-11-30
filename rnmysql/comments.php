@@ -1,6 +1,6 @@
 <?php
 
-/* PARA USAR ESTE LINK VC USA localhost/rnmysql/get-channel-by-id.php?channelId={id-do-canal-q-quer-procurar} */
+/* PARA USAR ESTE LINK VC USA localhost/rnmysql/comments.php?videoId={id-do-canal-q-quer-procurar} */
 
 include('conexao.php');
 

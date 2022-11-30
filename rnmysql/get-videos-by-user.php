@@ -5,6 +5,7 @@
 include('conexao.php');
 
 $lista = array();
+$videos = array();
 
 $sql = "select * from videos";
 
@@ -16,7 +17,8 @@ while($video = mysqli_fetch_assoc($resultado)){
 
 foreach($lista as $video){
     if(trim(strtolower($video['channelUser'])) == trim(strtolower($_GET['channelUser']))){
-        echo json_encode([$video]);
+        $videos[] = $video;
     }
 }
+echo json_encode($videos);
 mysqli_close($conexao);
