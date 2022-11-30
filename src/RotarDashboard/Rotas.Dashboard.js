@@ -52,16 +52,6 @@ export default function RotasTab({route, navigation}){
             }}
             />
 
-            <RotasDashBoard.Screen name="Perfil" component={Perfil} initialParams={{user}} options={{
-                headerShown: false,
-                tabBarLabel:  '',
-                tabBarIcon: ({color}) => (
-                    <>
-                        <EvilIcons name="user" size={40} color={color} />
-                    </>
-                )
-            }}
-            />
 
             <RotasDashBoard.Screen name="Explorar" initialParams={{idUser, user}} component={Explorar} 
             options={{
@@ -70,6 +60,16 @@ export default function RotasTab({route, navigation}){
                     <EvilIcons name="search" size={30} color={color} />
                 )
             }}
+            />
+            <RotasDashBoard.Screen name="Perfil" component={Perfil} initialParams={{user}} options={{
+                    headerShown: false,
+                    tabBarLabel:  '',
+                    tabBarIcon: ({color}) => (
+                        <>
+                            <EvilIcons name="user" size={40} color={color} />
+                        </>
+                    )
+                }}
             />
 
         </RotasDashBoard.Navigator>

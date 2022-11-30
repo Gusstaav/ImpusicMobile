@@ -19,7 +19,6 @@ export default function SeusVideos ({route, navigation}){
        
     }, []);
      
-
     return(
        
        <FlatList 

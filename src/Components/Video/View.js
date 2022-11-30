@@ -108,7 +108,7 @@ export default function Watch({route, navigation}){
                             <Text style={Style.NameUser}>{ data.channel }</Text>
                         </TouchableOpacity>
                     </View>
-                    <Comentarios />
+                    <Comentarios route={route} />
                 </>
             
         </View>

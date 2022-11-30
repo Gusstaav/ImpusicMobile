@@ -1,7 +1,6 @@
 import React from 'react';
 import {TextInput, TouchableOpacity, Text, View, Alert} from 'react-native';
 import { useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ipBd } from '../../../../controllerIP';
 
 
@@ -30,13 +29,15 @@ export default function Login ({navigation}){
             }) 
         });
         let ress = await reqs.json();
-        if(ress == false){
+        if(ress == false ){
             Alert.alert("E-mail ou senha invalidos")
+            return;
         }
         if(email === '', password === ''){
             Alert.alert("Todos os campos devem ser preenchidos")
+            return;
         }
-        else{
+        else{ 
             navigation.navigate('Impusic', {
                 user: ress.user,
                 idUser: ress.id,

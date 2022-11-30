@@ -3,11 +3,12 @@ import {View, Text} from "react-native";
 import { Style } from "./Style";
 import Coments from "./Coments/ComentariosView";
 
-export default function Comentarios(){
+export default function Comentarios({route}){
+  
     return(
         <View style={Style.container}>
             <Text style={Style.Title}>Comentarios</Text>
-            <Coments />
+            <Coments route={route} />
         </View>
     );
 }

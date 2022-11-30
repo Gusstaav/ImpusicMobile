@@ -9,9 +9,11 @@ export const Style = StyleSheet.create({
     Name:{
         color: '#A9A9A9',
         fontSize: 10,
-        marginRight: 5,
+        marginRight: 3,
+        marginBottom: 1,
     },
     comentario:{
         color: '#D3D3D3',
+        marginBottom: 5,
     }
 })

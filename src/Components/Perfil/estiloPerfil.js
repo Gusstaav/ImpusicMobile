@@ -36,6 +36,31 @@ export const estiloPerfil = StyleSheet.create({
         resizeMode: 'cover',
         width: '100%',
         height: '40%',
+    },
+    Header:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        height: 55,
+        padding: 5,
+        marginTop: 15,
+    },
+    botaoSair:{
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: '80%',
+        width: '10%',
+        marginRight: 17,
+    },
+    textHeader:{
+        color: "#939",
+        fontSize: 15,
+        padding: 5,
+    },
+    imageUser:{
+        height: '100%',
+        width: '100%',
+        borderRadius: 50,
     }
 
 });

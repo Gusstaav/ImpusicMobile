@@ -57,7 +57,14 @@ export default function Feed ({route, navigation}){
                                 <Image style={estiloFeed.thumbnailVideo}
                                     source={{uri: "http://"+ipBd+"/rnmysql/thumbnail/"+item.thumbnail+".jpg"}}
                                 />
-                                <View style={estiloFeed.descricaoVideo}>
+                                <TouchableOpacity style={estiloFeed.descricaoVideo}
+                                onPress={() => {
+                                    navigation.navigate('Channel',{
+                                        channelUser: item.channelUser,
+                                        videoId: item.videoId
+                                    })
+                                }}
+                                >
                                     <Image style={estiloFeed.fotoCanalVideo}
                                         source={{uri: "http://"+ipBd+"/rnmysql/icons/profile/"+item.channelId+".jpg"}}
                                     />
@@ -65,7 +72,7 @@ export default function Feed ({route, navigation}){
                                         <Text style={estiloFeed.tituloVideo}>{ item.title }</Text>
                                         <Text style={estiloFeed.canalVideo}>{ item.channel }</Text>
                                     </View>
-                                </View>
+                                </TouchableOpacity>
                             </View>
                     </TouchableOpacity>       
                 </>
