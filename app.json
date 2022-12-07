@@ -5,6 +5,12 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "icon":"./assets/logo-impusic-three.png",
+    "splash": {
+      "image": "./assets/splash-screen.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#25292e"
+    }
   }
 }
