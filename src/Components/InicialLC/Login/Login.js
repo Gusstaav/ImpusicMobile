@@ -1,6 +1,6 @@
-import React from 'react';
-import {TextInput, TouchableOpacity, Text, View, Alert} from 'react-native';
-import { useState } from 'react';
+import React, {useState} from 'react';
+import {TextInput, TouchableOpacity, Text, View, Alert, Image, Keyboard} from 'react-native';
+import * as Animatable from 'react-native-animatable';
 import { ipBd } from '../../../../controllerIP';
 
 
@@ -48,30 +48,38 @@ export default function Login ({navigation}){
 
     return(
         <View style={StyleLogin.body}>
-            <View style={StyleLogin.container}>
-                <Text style={StyleLogin.textLogin}>Login</Text>
+            <Animatable.View style={StyleLogin.container1} animation="flipInX" delay={1000} >
+                <Image 
+                style={StyleLogin.imageContainer1}
+                source={require('../../../../assets/logo-impusic.png')} />
+            </Animatable.View>
+                <Animatable.View animation="fadeInUp" delay={1000} style={StyleLogin.container2}>
+                        <View style={{padding: 5, alignItems: 'center'}}>
+                            <Text style={StyleLogin.textLogin}>Login</Text>
+                        </View>
+                            <View style={StyleLogin.container3}>
+                                <Text style={StyleLogin.inputText}>Email</Text>
+                                    <TextInput  style={StyleLogin.input}
+                                    placeholder="email" 
+                                    onChangeText={text=>setEmail(text)} />
+                                    
+                                <Text style={StyleLogin.inputText}>Senha</Text>                        
+                                    <TextInput style={StyleLogin.input}
+                                    placeholder="Senha" 
+                                    secureTextEntry onChangeText={text=>setPassword(text)} />  
+                            </View>
+                                    <View style={{alignItems: 'center'}}>
+                                            <TouchableOpacity style={StyleLogin.Botton}
+                                            onPress={() => doLogin()}>
+                                                <Text style={StyleLogin.textBotton}>Entrar</Text>
+                                            </TouchableOpacity>
 
-                
-            <TextInput  style={StyleLogin.input}
-            placeholder="email" 
-            onChangeText={text=>setEmail(text)} />
-            
-            
-            <TextInput style={StyleLogin.input}
-            placeholder="Senha" 
-            secureTextEntry onChangeText={text=>setPassword(text)} />   
-                
-                <TouchableOpacity style={StyleLogin.Botton}
-                onPress={() => doLogin()}>
-                     <Text style={StyleLogin.textBotton}>Entrar</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={StyleLogin.BottonCadastro}
-                onPress={() => navigation.navigate ('Cadastro')}>
-                    <Text style={StyleLogin.textCadastro}>Fazer cadastro</Text>
-                </TouchableOpacity>
-
-            </View>
+                                            <TouchableOpacity style={StyleLogin.BottonCadastro}
+                                            onPress={() => navigation.navigate ('Cadastro')}>
+                                                <Text style={StyleLogin.textCadastro}>Fazer cadastro</Text>
+                                            </TouchableOpacity>
+                                        </View>    
+                    </Animatable.View>
 
         </View>
     );

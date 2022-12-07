@@ -4,42 +4,77 @@ import { StyleSheet } from "react-native";
 export const styleCadastro = StyleSheet.create({
     body:{
         flex: 1,
-        backgroundColor: "#D3D3D3",
-        justifyContent: 'center',
+        backgroundColor: 'rgb(26,26,26)',
+    },
+    botaoGoBack:{
+        width: 72,
+        height: 42,
         alignItems: 'center',
+        justifyContent: 'center',
+        margin: 10,
+        marginTop: 35,
+        border: 'solid',
+        borderWidth: 1,
+        borderColor: '#936',
     },
-    container:{
-    justifyContent: "center",
-    alignItems: 'center',
-    height: 330,
-    width: 280, 
+    container1:{
+        alignItems: 'center',
+        margin: 35,
     },
-
-    textCadastrar:{
-        marginTop: 10,
-        marginBottom: 5,
+    imageContainer1:{
+        width: 75, 
+        height: 75,
+    },
+    container2:{
+        flex: 2,
+        justifyContent: 'center',
+        padding: 12,
+        width: '100%',
+        height: '90%',
+        backgroundColor: 'rgb(255,255,255)',
+        border: 'solid',
+        borderWidth: 1,
+        borderTopEndRadius: 15,
+        borderTopStartRadius: 15,
+        borderColor: 'rbg(60,20,60)',
+    },
+    container3:{
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        padding: 15,
+    },
+    textLogin:{
+        margin: 10,
         fontSize: 20,
-        color: '#fff',
+        fontWeight: "bold",
+        color: 'black',
+    },
+    inputText:{
+        fontSize: 15,
     },
     input:{
-        borderRadius: 10,
-        marginTop: 20,
+        marginBottom: 20,
         padding: 10,
-        width: 230,
-        borderColor: "#396",
-        shadowColor: "#396",
+        height: 50,
+        width: 300,
+        borderBottomWidth: 1,
+        borderBottomColor: 'rgb(60,10,60)',
         backgroundColor: '#fff',
     },
     botton:{
-        marginTop: 30,
+        borderRadius: 2,
+        marginTop: 35,
         height: 40,
-        width: 100,
+        width: 130,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#938',
+        backgroundColor: "#939",
     },
     textBotton:{
         padding: 5,
         color: "#fff",
     },
+    botaoVoltar:{
+        color: "#fff",
+    }
 })

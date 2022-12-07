@@ -10,6 +10,8 @@ const Tab = createMaterialTopTabNavigator();
 
 export default function RotasChannel({route}) {
   const {channelUser} = route.params;
+  const {videoId} = route.params;
+  const {channelId} = route.params;
  
     return (
       <Tab.Navigator screenOptions={{
@@ -31,7 +33,7 @@ export default function RotasChannel({route}) {
           },
 
       }}>
-        <Tab.Screen name="VideosChannel" initialParams={{channelUser}}  component={VideosChannel} />
+        <Tab.Screen name="VideosChannel" initialParams={{channelUser, videoId, channelId}}  component={VideosChannel} />
       </Tab.Navigator>
     );
   }

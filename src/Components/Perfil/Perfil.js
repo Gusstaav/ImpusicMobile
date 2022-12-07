@@ -8,24 +8,19 @@ import PerfilTabs from "./RotasPerfil.js/RotasPerfil";
 
 export default function Perfil({route, navigation}){
     const {user} = route.params;
+    const {idUser} = route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
+    const [follows, setFollows] = useState([]);
+    const [avatarUri, setAvatarUri] = useState();
+    const [bannerUri, setBannerUri] = useState();
+
 
     /*
         SE TIVER RODANDO NO PRÓPRIO PC: 10.0.2.2
         SE TIVER RODANDO NO EXPO GO: 192.168.1.14 (ipv4 do seu computador)
     */
-   
-   
-   /*useEffect(() => {
-       async function getUser(){
-           const response = await AsyncStorage.getItem('userData');
-           const json = JSON.parse(response);
-           setUser(json);
-       }
-       getUser();
-   },[])
-*/
+
    
    
    useEffect(() => {
@@ -38,7 +33,85 @@ export default function Perfil({route, navigation}){
        .finally(() => setLoading(false));
        
     }, []);
+
+    /**
+     * buscar seguidores
+     */
+    useEffect(() => {
+        fetch('http://'+ipBd+'/rnmysql/get-follows-by-user.php?id='+idUser)
+        .then(response => response.json())
+        .then((json) => setFollows(json))
+        .catch((error) => console.error(error))
+        .finally(() => setLoading(false));
+        
+     }, []);
+
+     /**
+      * contador de seguidores
+      */
+     let counter = 0;
+     for (const obj of follows) {
+     if (obj.idFollow === idUser) counter++;
+     }
+
+
     
+    /**
+     * verificando se existe foto de canal
+     */
+    
+    async function verificarAvatarFoto(){
+        let reqs = await fetch('http://'+ipBd+'/rnmysql/verify-fotoPerfil.php?idUser='+idUser, {
+            method: 'POST',
+            headers:{
+                'Accep':'application/json',
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({
+                idUser: idUser
+            }) 
+        });
+        
+        const ress = await reqs.json();
+        if(ress == "false"){
+             setAvatarUri("https://image.shutterstock.com/image-vector/user-avatarUri-icon-sign-profile-260nw-1145752283.jpg");
+        }else{
+            setAvatarUri("http://"+ipBd+"/rnmysql/icons/profile/"+data.id+".jpg")
+        }
+
+       
+    }; 
+    verificarAvatarFoto();
+
+    /**
+     * verificando se a banner no canal
+     */
+
+    async function verificarBannerFoto(){
+        let reqs = await fetch('http://'+ipBd+'/rnmysql/verify-fotoBanner.php?idUser='+idUser, {
+            method: 'POST',
+            headers:{
+                'Accep':'application/json',
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({
+                idUser: idUser
+            }) 
+        });
+        
+        const ress = await reqs.json();
+        if(ress == "false"){
+             setBannerUri("http://"+ipBd+"/rnmysql/banner/bannerDefault.jpg")
+        }else{
+            setBannerUri("http://"+ipBd+"/rnmysql/banner/"+data.id+".jpg")
+        }
+      
+    }; 
+    verificarBannerFoto();
+
+      
+     
+   
  
     return(
         <>
@@ -62,16 +135,17 @@ export default function Perfil({route, navigation}){
         <View style={estiloPerfil.container}  >
         {!! data.id &&(
             <Image style={estiloPerfil.fotoBanner} 
-            source={{uri: "http://"+ipBd+"/rnmysql/banner/"+data.id+".jpg"}}
+            source={{uri: bannerUri}}
             />
             )}
             {!! data.id &&(
             <Image style={estiloPerfil.fotoPerfil}
-            source={{uri: "http://"+ipBd+"/rnmysql/icons/profile/"+data.id+".jpg"}}
+            source={{uri: avatarUri}}
             />
             )}
                 <View style={estiloPerfil.containerDados}>
                     <Text style={estiloPerfil.textoPerfil}> {data.name} </Text>
+                    <Text style={{ color: 'rgb(220,220,220)', fontSize: 12,}}> {counter} seguidores </Text>
                     {!! data.description &&(
                     <Text style={estiloPerfil.textoDescription}> {data.description} </Text>
                     )}

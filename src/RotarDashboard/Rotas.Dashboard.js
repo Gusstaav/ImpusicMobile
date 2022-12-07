@@ -61,7 +61,7 @@ export default function RotasTab({route, navigation}){
                 )
             }}
             />
-            <RotasDashBoard.Screen name="Perfil" component={Perfil} initialParams={{user}} options={{
+            <RotasDashBoard.Screen name="Perfil" component={Perfil} initialParams={{user, idUser}} options={{
                     headerShown: false,
                     tabBarLabel:  '',
                     tabBarIcon: ({color}) => (

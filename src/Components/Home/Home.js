@@ -11,12 +11,15 @@ export default function Feed ({route, navigation}){
     const {idUser} = route.params;
     const [isLoading, setLoading] = useState(true);
     const [datas, setDatas] = useState([]);
+    const [avatarUri, setAvatarUri] = useState();
    
     /*
         SE TIVER RODANDO NO PRÓPRIO PC: 10.0.2.2
         SE TIVER RODANDO NO EXPO GO: 192.168.1.14 (ipv4 do seu computador)
     */
 
+
+    
 
     useEffect(() => {
         async function LoadFeed(){
@@ -29,6 +32,32 @@ export default function Feed ({route, navigation}){
         LoadFeed();
     }, []);
 
+     /**
+      * verificar se user possui foto de perfil
+      */
+    async function verificarAvatarFoto(){
+        let reqs = await fetch('http://'+ipBd+'/rnmysql/verify-fotoPerfil.php?idUser='+idUser, {
+            method: 'POST',
+            headers:{
+                'Accep':'application/json',
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({
+                idUser: idUser
+            }) 
+        });
+        
+        const ress = await reqs.json();
+        if(ress == "false"){
+             setAvatarUri("https://image.shutterstock.com/image-vector/user-avatarUri-icon-sign-profile-260nw-1145752283.jpg");
+        }else{
+            setAvatarUri("http://"+ipBd+"/rnmysql/icons/profile/"+idUser+".jpg")
+        }
+
+       
+    }; 
+    verificarAvatarFoto();
+
   return(
     <View style={estiloFeed.Geral}>
         <View style={estiloFeed.Header}>
@@ -37,7 +66,7 @@ export default function Feed ({route, navigation}){
                  onPress={() => navigation.navigate('Perfil')}>
     
                     <Image   style={estiloFeed.imageUser}
-                    source={{uri: "http://"+ipBd+"/rnmysql/icons/profile/"+idUser+".jpg"}}/>
+                    source={{uri: avatarUri}}/>
     
                 </TouchableOpacity>
         </View>
@@ -50,7 +79,8 @@ export default function Feed ({route, navigation}){
                     <TouchableOpacity  onPress={() => { 
                         navigation.navigate('Watch', {
                             videoId: item.id,
-                            channelUser: item.channelUser
+                            channelUser: item.channelUser,
+                            channelId: item.channelId
                         });
                         }}>
                             <View style={estiloFeed.Container}>
@@ -61,7 +91,8 @@ export default function Feed ({route, navigation}){
                                 onPress={() => {
                                     navigation.navigate('Channel',{
                                         channelUser: item.channelUser,
-                                        videoId: item.videoId
+                                        videoId: item.id,
+                                        channelId: item.channelId,
                                     })
                                 }}
                                 >

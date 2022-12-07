@@ -16,39 +16,11 @@ export const Style = StyleSheet.create({
         color: '#fff',
         fontSize: 20,
     },
-    BodyFeedback:{
-        flexDirection: 'row',
-        marginTop: 15,
-        marginBottom: 15,
-        alignItems: 'center',
-    },
-    Views: {
-        fontSize: 10,
-        color: '#A9A9A9',
-    },
-    Button:{
-        marginLeft: 15,
-        flexDirection: 'row',
-    },
-    LikeImage:{
-        width: 25,
-        height: 25,
-        color: "#fff",
-    },
-    Like:{
-        margin: 5,
-        fontSize: 10,
-        color: '#A9A9A9',
-    },
-    DesLike:{
-        margin: 5,
-        marginRight: 20,
-        fontSize: 10,
-        color: '#A9A9A9',
-    },
     Container:{
         flexDirection: "row",
         alignItems: "center",
+        marginTop: 15,
+        marginBottom: 5,
     },
     fotoUser:{
         marginLeft: 5,
@@ -58,9 +30,15 @@ export const Style = StyleSheet.create({
     },
     NameUser: {
         fontSize: 10,
-        padding: 5,
+        marginLeft: 5,
+        padding: 1,
         color: '#D3D3D3',
     },
+    follows: {
+        color: 'rgb(215,215,215)', 
+        fontSize: 9, 
+        marginLeft: 5,
+},
     VideoDetails: {
         paddingLeft: 10,
         paddingRight: 10,

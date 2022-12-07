@@ -32,6 +32,10 @@ export const estiloPerfil = StyleSheet.create({
         fontSize: 12,
         color: 'rgb(220,220,220)',
     },
+    follows:{
+        color: 'rgb(220,220,220)',
+        fontSize: 12,
+    },
     fotoBanner:{
         resizeMode: 'cover',
         width: '100%',

@@ -58,7 +58,7 @@ export const estiloFeed = StyleSheet.create({
     botaoPerfil:{
         height: '80%',
         width: '10%',
-        marginRight: 5,
+        marginRight: 10,
     },
     textHeader:{
         color: "#939",

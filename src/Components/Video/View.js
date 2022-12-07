@@ -9,16 +9,21 @@ import * as ScreenOrientation from 'expo-screen-orientation';
 import { StatusBar } from 'expo-status-bar';
 import Comentarios from "./Comentarios/Comentarios";
 import { ipBd } from "../../../controllerIP";
+import { styleCadastro } from "../InicialLC/stylesLogin-Cadastro/styleCadastro";
 
 
 
 export default function Watch({route, navigation}){
     const { videoId } = route.params;
     const {channelUser} = route.params;
+    const {channelId} = route.params;
     const [data, setData] = useState([]);
     const [inFullscreen, setInFullsreen] = useState(false);
+    const [loading, setLoading] = useState(true);
     const refVideo = useRef(null);
     const [status, setStatus] = React.useState({});
+    const [follows, setFollows] = useState([]);
+    const [avatarUri, setAvatarUri] = useState();
 
 
     /*
@@ -33,6 +38,51 @@ export default function Watch({route, navigation}){
           .catch((error) => console.error(error));
     }, []);
 
+    /**
+     * buscar seguidores
+     */
+     useEffect(() => {
+        fetch('http://'+ipBd+'/rnmysql/get-follows-by-user.php?id='+channelId)
+        .then(response => response.json())
+        .then((json) => setFollows(json))
+        .catch((error) => console.error(error))
+        .finally(() => setLoading(false));
+        
+     }, []);
+
+     /**
+      * contador de seguidores
+      */
+     let counter = 0;
+     for (const obj of follows) {
+     if (obj.idFollow === channelId) counter++;
+     }
+
+      /**
+       * verificando se canal tem foto de perfil
+       */
+    async function verificarAvatarFoto(){
+        let reqs = await fetch('http://'+ipBd+'/rnmysql/verify-fotoPerfil.php?idUser='+channelId, {
+            method: 'POST',
+            headers:{
+                'Accep':'application/json',
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({
+                idUser: channelId
+            }) 
+        });
+        
+        const ress = await reqs.json();
+        if(ress == "false"){
+             setAvatarUri("https://image.shutterstock.com/image-vector/user-avatarUri-icon-sign-profile-260nw-1145752283.jpg");
+        }else{
+            setAvatarUri("http://"+ipBd+"/rnmysql/icons/profile/"+data.channelId+".jpg")
+        }
+
+       
+    }; 
+    verificarAvatarFoto();
 
 
     return(
@@ -86,27 +136,16 @@ export default function Watch({route, navigation}){
                 <>
                     <View style={Style.VideoDetails}>
                         <Text style={Style.Title}>{ data.title }</Text>
-
-                        <View style={Style.BodyFeedback}> 
-                        
-                            <TouchableOpacity style={Style.Button}>
-                                <Text style={Style.Like}>500</Text>
+                            <TouchableOpacity onPress={() => navigation.navigate('Channel', {
+                                channelUser: channelUser,
+                                videoId: videoId
+                            }) } style={Style.Container}>
+                                <Image source={{uri: avatarUri}} style={Style.fotoUser}/>
+                                <View>
+                                <Text style={Style.NameUser}>{ data.channel }</Text>
+                                <Text style={Style.follows}> {counter} Seguidores</Text>
+                                </View>
                             </TouchableOpacity>
-
-                            <TouchableOpacity style={Style.Button}>
-                                <Text style={Style.DesLike}>500</Text>           
-                            </TouchableOpacity>
-                            
-                            <Text style={Style.Views}> 10000 <AntDesign name="eyeo" size={8} color="#A9A9A9" /></Text>
-                        
-                        </View>
-                        <TouchableOpacity onPress={() => navigation.navigate('Channel', {
-                            channelUser: channelUser,
-                            videoId: videoId
-                        }) } style={Style.Container}>
-                            <Image source={{uri: "http://"+ipBd+"/rnmysql/icons/profile/"+data.channelId+".jpg"}} style={Style.fotoUser}/>
-                            <Text style={Style.NameUser}>{ data.channel }</Text>
-                        </TouchableOpacity>
                     </View>
                     <Comentarios route={route} />
                 </>

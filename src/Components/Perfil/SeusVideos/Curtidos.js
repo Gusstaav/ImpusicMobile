@@ -1,6 +1,5 @@
 import React from "react";
 import { Text, ScrollView, Image, View } from "react-native";
-import video from '../../../assets/images.jpg';
 import { estiloCurtido } from "./estiloCurtido";
 
 export default function SeusVideos (){

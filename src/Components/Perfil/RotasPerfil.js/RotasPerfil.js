@@ -8,7 +8,8 @@ const Tab = createMaterialTopTabNavigator();
 
 export default function PerfilTabs({route}) {
   const {user} = route.params;
-      
+  const {idUser} = route.params;
+     
     return (
       <Tab.Navigator screenOptions={{
           tabBarStyle: {
@@ -29,7 +30,7 @@ export default function PerfilTabs({route}) {
           },
 
       }}>
-        <Tab.Screen name="SeusVideos" initialParams={{user}} component={SeusVideos} />
+        <Tab.Screen name="SeusVideos" initialParams={{user, idUser}} component={SeusVideos} />
       </Tab.Navigator>
     );
   }

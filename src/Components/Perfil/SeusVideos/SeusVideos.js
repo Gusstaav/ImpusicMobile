@@ -6,8 +6,11 @@ import { ipBd } from "../../../../controllerIP";
 
 export default function SeusVideos ({route, navigation}){
     const {user} = route.params;
+    const {idUser} = route.params;
     const [data, setData] = useState([]);
     const [Loading, setLoading] = useState(true);
+    const [avatarUri, setAvatarUri] = useState();
+    
   
 
    useEffect(() => {
@@ -18,6 +21,34 @@ export default function SeusVideos ({route, navigation}){
        .finally(() => setLoading(false));
        
     }, []);
+
+     /**
+     * buscando foto de avatar do canal do usuario
+     */
+
+      async function verificarAvatarFoto(){
+        let reqs = await fetch('http://'+ipBd+'/rnmysql/verify-fotoPerfil.php?idUser='+idUser, {
+            method: 'POST',
+            headers:{
+                'Accep':'application/json',
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({
+                idUser: idUser
+            }) 
+        });
+        
+        const ress = await reqs.json();
+        if(ress == "false"){
+             setAvatarUri("https://image.shutterstock.com/image-vector/user-avatarUri-icon-sign-profile-260nw-1145752283.jpg");
+        }else{
+            setAvatarUri("http://"+ipBd+"/rnmysql/icons/profile/"+idUser+".jpg")
+        }
+        
+    }; 
+    verificarAvatarFoto();
+    
+    
      
     return(
        
@@ -38,7 +69,7 @@ export default function SeusVideos ({route, navigation}){
                             />
                                 <View style={estiloVideo.header}>
                                     <Image style={estiloVideo.fotoCanalVideo}
-                                        source={{uri: "http://"+ipBd+"/rnmysql/icons/profile/"+item.channelId+".jpg"}}
+                                        source={{uri: avatarUri}}
                                     />
                                     <View style={estiloVideo.headerTextosVideo}>
                                         <Text style={estiloVideo.tituloVideo}>{ item.title }</Text>

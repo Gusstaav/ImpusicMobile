@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
 import { Text, ScrollView, Image, View, FlatList, TouchableOpacity } from "react-native";
-import video from '../../assets/images.jpg';
 import { estiloExplorar } from "./estiloExplorar";
 import { ipBd } from "../../../controllerIP";
 
@@ -8,6 +7,7 @@ export default function Explorar ({route, navigation}){
     const {idUser} = route.params;
     const [isLoading, setLoading] = useState(true);
     const [datas, setData] = useState([]);
+    const [avatarUri, setAvatarUri] = useState();
    
     /*
         SE TIVER RODANDO NO PRÓPRIO PC: 10.0.2.2
@@ -23,6 +23,32 @@ export default function Explorar ({route, navigation}){
           .finally(() => setLoading(false));
     }, []);
 
+    /**
+     * verificando se user tem foto de perfil
+     */
+     
+     async function verificarAvatarFoto(){
+        let reqs = await fetch('http://'+ipBd+'/rnmysql/verify-fotoPerfil.php?idUser='+idUser, {
+            method: 'POST',
+            headers:{
+                'Accep':'application/json',
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({
+                idUser: idUser
+            }) 
+        });
+        
+        const ress = await reqs.json();
+        if(ress == "false"){
+             setAvatarUri("https://image.shutterstock.com/image-vector/user-avatarUri-icon-sign-profile-260nw-1145752283.jpg");
+        }else{
+            setAvatarUri("http://"+ipBd+"/rnmysql/icons/profile/"+idUser+".jpg")
+        }
+
+       
+    }; 
+    verificarAvatarFoto();
   
   return(
         <View style={estiloExplorar.Geral}>
@@ -33,7 +59,7 @@ export default function Explorar ({route, navigation}){
                          onPress={() => navigation.navigate('Perfil')}>
 
                             <Image   style={estiloExplorar.imageUser}
-                            source={{uri: "http://"+ipBd+"/rnmysql/icons/profile/"+idUser+".jpg"}}/>
+                            source={{uri: avatarUri}}/>
 
                         </TouchableOpacity>
                 </View>

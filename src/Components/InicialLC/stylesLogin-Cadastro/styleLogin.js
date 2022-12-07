@@ -4,39 +4,56 @@ import { StyleSheet } from "react-native";
 export const StyleLogin = StyleSheet.create({
     body:{
         flex: 1,
-        backgroundColor: '#000',
-        justifyContent: 'center',
+        backgroundColor: 'rgb(23,23,23)',
         alignItems: 'center',
+        justifyContent: 'flex-end'
     },
-    container:{
-    alignItems: 'center',
-    padding: 12,
-    border: 'solid',
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: '#936',
+    container1:{
+        margin: 35,
+    },
+    imageContainer1:{
+        width: 75, 
+        height: 75,
+    },
+    container2:{
+        justifyContent: 'center',
+        padding: 12,
+        width: '100%',
+        height: '70%',
+        backgroundColor: 'rgb(255,255,255)',
+        border: 'solid',
+        borderWidth: 1,
+        borderRadius: 15,
+        borderColor: 'rbg(60,20,60)',
+    },
+    container3:{
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        padding: 15,
     },
     textLogin:{
         margin: 10,
-        marginBottom: 20,
         fontSize: 20,
         fontWeight: "bold",
-        color: '#fff',
+        color: 'black',
+    },
+    inputText:{
+        fontSize: 15,
     },
     input:{
-        borderRadius: 5,
-        marginTop: 25,
-        margin: 5,
+        marginBottom: 20,
         padding: 10,
-        width: 230,
+        height: 50,
+        width: 300,
+        borderBottomWidth: 1,
+        borderBottomColor: 'rgb(60,10,60)',
         backgroundColor: '#fff',
     },
     Botton:{
         borderRadius: 5,
         marginTop: 35,
-        height: 50,
-        width: 150,
-        padding: 5,
+        height: 40,
+        width: 130,
         alignItems: 'center',
         backgroundColor: "#939",
     },
@@ -51,7 +68,7 @@ export const StyleLogin = StyleSheet.create({
         fontSize: 12,
         fontWeight: "100",
         fontStyle: 'italic',
-        color: 'snow',
+        color: 'black',
         
     },
 })
